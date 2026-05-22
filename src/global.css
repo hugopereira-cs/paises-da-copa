@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+@theme {
+	--color-app-bg: var(--bg);
+	--color-app-border: var(--border);
+	--color-app-primary: var(--primary);
+}
+
+:root {
+	--bg: #f7f8fa;
+	--border: #5c5d5f;
+	--primary: #323337;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #010409;
+		--border: #aaadb4;
+		--primary: #dbdee3;
+	}
+}
+
+/* Suporte para troca manual de tema via atributo no HTML se necessário no futuro */
+[data-theme="dark"] {
+	--bg: #010409;
+	--border: #aaadb4;
+	--primary: #dbdee3;
+}
+
+[data-theme="light"] {
+	--bg: #f7f8fa;
+	--border: #5c5d5f;
+	--primary: #323337;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--primary);
+	min-height: 100vh;
+	margin: 0;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+/* Camada do background image field.png */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("/field.png");
+	background-repeat: repeat;
+	z-index: -1;
+	pointer-events: none;
+}
