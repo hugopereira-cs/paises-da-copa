@@ -1,8 +1,10 @@
 import { Container } from './components/Container';
+import { Header } from './components/Header';
 
 function App() {
 	return (
 		<Container>
+			<Header />
 			<main className="flex flex-1 flex-col items-center justify-center p-4">
 				<div className="rounded-lg border-2 border-app-border bg-app-bg p-8 shadow-xl">
 					<h1 className="mb-4 text-4xl font-bold text-app-primary">
