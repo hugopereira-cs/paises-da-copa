@@ -2,6 +2,19 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { type Country, countries as localCountries } from '../data/countries';
 
+// Definindo a interface para a resposta da API para evitar o uso de 'any'
+interface ApiCountry {
+	cca3: string;
+	flags: {
+		svg: string;
+	};
+	continents: string[];
+	languages?: Record<string, string>;
+	currencies?: Record<string, { name: string; symbol: string }>;
+	area: number;
+	population: number;
+}
+
 export function useCountries() {
 	const [data, setData] = useState<Country[]>(localCountries);
 	const [loading, setLoading] = useState(true);
@@ -10,17 +23,15 @@ export function useCountries() {
 	useEffect(() => {
 		const fetchCountries = async () => {
 			try {
-				const response = await axios.get(
-					'https://restcountries.com/v3.1/all?fields=name,cca3,continents,languages,currencies,area,population,flags',
+				const response = await axios.get<ApiCountry[]>(
+					'https://restcountries.com/v3.1/all?fields=cca3,continents,languages,currencies,area,population,flags',
 				);
 
 				const apiCountries = response.data;
 
 				// Mapear os dados da API para a nossa lista de 48 países
-				const mergedData = localCountries.map((local) => {
-					const apiData = apiCountries.find(
-						(api: any) => api.cca3 === local.code,
-					);
+				const mergedData: Country[] = localCountries.map((local) => {
+					const apiData = apiCountries.find((api) => api.cca3 === local.code);
 
 					if (apiData) {
 						return {
@@ -29,7 +40,7 @@ export function useCountries() {
 							continent: apiData.continents?.[0] || 'N/A',
 							languages: Object.values(apiData.languages || {}),
 							currencies: Object.values(apiData.currencies || {}).map(
-								(c: any) => `${c.name} (${c.symbol})`,
+								(c) => `${c.name} (${c.symbol})`,
 							),
 							area: apiData.area,
 							population: apiData.population,
