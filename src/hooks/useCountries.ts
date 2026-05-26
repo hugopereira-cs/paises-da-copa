@@ -34,9 +34,18 @@ export function useCountries() {
 					const apiData = apiCountries.find((api) => api.cca3 === local.code);
 
 					if (apiData) {
+						let flag = apiData.flags.svg;
+
+						// Override para Inglaterra e Escócia que a API retorna como UK
+						if (local.name === 'Inglaterra') {
+							flag = 'https://flagcdn.com/gb-eng.svg';
+						} else if (local.name === 'Escócia') {
+							flag = 'https://flagcdn.com/gb-sct.svg';
+						}
+
 						return {
 							...local,
-							flag: apiData.flags.svg,
+							flag,
 							continent: apiData.continents?.[0] || 'N/A',
 							languages: Object.values(apiData.languages || {}),
 							currencies: Object.values(apiData.currencies || {}).map(
