@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import type { Country } from '../data/countries';
 import { useCountries } from '../hooks/useCountries';
 import { CountryCard } from './CountryCard';
+import { CountryModal } from './CountryModal';
 
 export function CountrySection() {
 	const { data: countries, loading, error } = useCountries();
+	const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
 	const handleCountryClick = (country: Country) => {
-		console.log(`Abrir modal para: ${country.name}`, country);
-		// Lógica do modal será implementada futuramente
+		setSelectedCountry(country);
 	};
 
 	if (loading) {
@@ -27,14 +29,21 @@ export function CountrySection() {
 	}
 
 	return (
-		<section className="mx-auto grid max-w-[1400px] grid-cols-1 justify-items-center gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-			{countries.map((country) => (
-				<CountryCard
-					key={country.id}
-					country={country}
-					onClick={handleCountryClick}
-				/>
-			))}
-		</section>
+		<>
+			<section className="mx-auto grid max-w-[1400px] grid-cols-1 justify-items-center gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+				{countries.map((country) => (
+					<CountryCard
+						key={country.id}
+						country={country}
+						onClick={handleCountryClick}
+					/>
+				))}
+			</section>
+
+			<CountryModal
+				country={selectedCountry}
+				onClose={() => setSelectedCountry(null)}
+			/>
+		</>
 	);
 }
