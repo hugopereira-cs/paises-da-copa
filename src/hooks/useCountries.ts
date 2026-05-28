@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { type Country, countries as localCountries } from '../data/countries';
+import {
+	translateContinent,
+	translateCurrency,
+	translateLanguage,
+} from '../utils/translations';
 
 // Definindo a interface para a resposta da API para evitar o uso de 'any'
 interface ApiCountry {
@@ -43,14 +48,22 @@ export function useCountries() {
 							flag = 'https://flagcdn.com/gb-sct.svg';
 						}
 
+						// Traduzir idiomas usando os códigos da API (ex: { spa: "Spanish" } -> ["Espanhol"])
+						const languages = Object.entries(apiData.languages || {}).map(
+							([code, name]) => translateLanguage(code, name),
+						);
+
+						// Traduzir moedas usando os códigos e símbolos
+						const currencies = Object.entries(apiData.currencies || {}).map(
+							([code, info]) => translateCurrency(code, info.symbol),
+						);
+
 						return {
 							...local,
 							flag,
-							continent: apiData.continents?.[0] || 'N/A',
-							languages: Object.values(apiData.languages || {}),
-							currencies: Object.values(apiData.currencies || {}).map(
-								(c) => `${c.name} (${c.symbol})`,
-							),
+							continent: translateContinent(apiData.continents?.[0] || 'N/A'),
+							languages,
+							currencies,
 							area: apiData.area,
 							population: apiData.population,
 						};
