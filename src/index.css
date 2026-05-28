@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 @theme {
 	--color-app-bg: var(--bg);
 	--color-app-border: var(--border);
 	--color-app-primary: var(--primary);
+	--font-sans: "Rubik", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
