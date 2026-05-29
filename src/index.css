@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 
 @theme {
 	--color-app-bg: var(--bg);
 	--color-app-border: var(--border);
 	--color-app-primary: var(--primary);
+	--color-app-secondary: var(--secondary);
 	--font-sans: "Rubik", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -12,6 +13,7 @@
 	--bg: #f7f8fa;
 	--border: #5c5d5f;
 	--primary: #323337;
+	--secondary: #5c5d5f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +21,7 @@
 		--bg: #010409;
 		--border: #aaadb4;
 		--primary: #dbdee3;
+		--secondary: #aaadb4;
 	}
 }
 
@@ -27,12 +30,14 @@
 	--bg: #010409;
 	--border: #aaadb4;
 	--primary: #dbdee3;
+	--secondary: #aaadb4;
 }
 
 [data-theme="light"] {
 	--bg: #f7f8fa;
 	--border: #5c5d5f;
 	--primary: #323337;
+	--secondary: #5c5d5f;
 }
 
 * {

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Coins, Globe, MapPin, Maximize, Users, X } from 'lucide-react';
-import type { Country } from '../data/countries';
+import type { Country } from '../types/country';
 
 interface CountryModalProps {
 	country: Country | null;

@@ -1,14 +1,4 @@
-export interface Country {
-	id: number;
-	name: string;
-	code: string; // Código ISO Alpha-3 para busca precisa na API
-	flag?: string;
-	continent?: string;
-	languages?: string[];
-	currencies?: string[];
-	area?: number;
-	population?: number;
-}
+import type { Country } from '../types/country';
 
 export const countries: Country[] = [
 	{ id: 1, name: 'África do Sul', code: 'ZAF' },
@@ -31,14 +21,14 @@ export const countries: Country[] = [
 	{ id: 18, name: 'Curaçao', code: 'CUW' },
 	{ id: 19, name: 'Egito', code: 'EGY' },
 	{ id: 20, name: 'Equador', code: 'ECU' },
-	{ id: 21, name: 'Escócia', code: 'GBR' }, // Escócia usa o código do Reino Unido na API
+	{ id: 21, name: 'Escócia', code: 'GBR' },
 	{ id: 22, name: 'Espanha', code: 'ESP' },
 	{ id: 23, name: 'Estados Unidos', code: 'USA' },
 	{ id: 24, name: 'França', code: 'FRA' },
 	{ id: 25, name: 'Gana', code: 'GHA' },
 	{ id: 26, name: 'Haiti', code: 'HTI' },
 	{ id: 27, name: 'Holanda', code: 'NLD' },
-	{ id: 28, name: 'Inglaterra', code: 'GBR' }, // Inglaterra usa o código do Reino Unido na API
+	{ id: 28, name: 'Inglaterra', code: 'GBR' },
 	{ id: 29, name: 'Irã', code: 'IRN' },
 	{ id: 30, name: 'Iraque', code: 'IRQ' },
 	{ id: 31, name: 'Japão', code: 'JPN' },

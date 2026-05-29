@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { type Country, countries as localCountries } from '../data/countries';
+import { countries as localCountries } from '../data/countries';
+import type { Country } from '../types/country';
 import {
 	translateContinent,
 	translateCurrency,
