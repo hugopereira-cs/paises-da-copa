@@ -14,7 +14,7 @@ export function CountryCard({ country, onClick }: CountryCardProps) {
 		>
 			<div className="mb-3 overflow-hidden rounded-md border border-app-border">
 				<img
-					src={country.flag || 'https://flagcdn.com/br.svg'}
+					src={country.flag}
 					alt={`Bandeira do ${country.name}`}
 					className="h-32 w-full object-cover transition-transform duration-500 group-hover:scale-110"
 				/>

@@ -10,7 +10,7 @@ import {
 
 // Definindo a interface para a resposta da API para evitar o uso de 'any'
 interface ApiCountry {
-	cca3: string;
+	cca3: string; // Country Code Alpha-3", é o padrão ISO 3166-1 para códigos de país com 3 letras.
 	flags: {
 		svg: string;
 	};
@@ -35,7 +35,7 @@ export function useCountries() {
 
 				const apiCountries = response.data;
 
-				// Mapear os dados da API para a nossa lista de 48 países
+				// Mapear os dados da API para a lista de 48 países
 				const mergedData: Country[] = localCountries.map((local) => {
 					const apiData = apiCountries.find((api) => api.cca3 === local.code);
 

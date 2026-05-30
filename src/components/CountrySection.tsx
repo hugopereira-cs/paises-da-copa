@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { Country } from '../data/countries';
 import { useCountries } from '../hooks/useCountries';
+import type { Country } from '../types/country';
 import { CountryCard } from './CountryCard';
 import { CountryModal } from './CountryModal';
 
