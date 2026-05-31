@@ -4,6 +4,9 @@ import type { Country } from '../types/country';
 import { CountryCard } from './CountryCard';
 import { CountryModal } from './CountryModal';
 
+/**
+ * Seção principal que gerencia a grade de países e o estado do modal.
+ */
 export function CountrySection() {
 	const { data: countries, loading, error } = useCountries();
 	const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);

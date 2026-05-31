@@ -1,10 +1,16 @@
 import type { Country } from '../types/country';
 
 interface CountryCardProps {
+	/** Objeto contendo os dados do país a ser exibido */
 	country: Country;
+	/** Função de callback disparada ao clicar no card */
 	onClick: (country: Country) => void;
 }
 
+/**
+ * Componente que exibe um resumo do país em formato de card interativo.
+ * @param props - Propriedades do componente.
+ */
 export function CountryCard({ country, onClick }: CountryCardProps) {
 	return (
 		<button

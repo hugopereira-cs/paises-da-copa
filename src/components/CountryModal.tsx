@@ -4,16 +4,21 @@ import { useEffect, useRef } from 'react';
 import type { Country } from '../types/country';
 
 interface CountryModalProps {
+	/** País selecionado para exibição. Se nulo, o modal é fechado. */
 	country: Country | null;
+	/** Função disparada para fechar o modal. */
 	onClose: () => void;
 }
 
+/**
+ * Componente de modal animado que exibe informações detalhadas de um país.
+ * @param props - Propriedades do componente.
+ */
 export function CountryModal({ country, onClose }: CountryModalProps) {
 	const closeButtonRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
 		if (country) {
-			// Pequeno delay para a animação do Framer Motion começar
 			const timer = setTimeout(() => {
 				closeButtonRef.current?.focus();
 			}, 100);
@@ -32,7 +37,6 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 					aria-modal="true"
 					aria-labelledby="modal-title"
 				>
-					{/* Backdrop */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
@@ -41,7 +45,6 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 						className="absolute inset-0 bg-black/60 backdrop-blur-sm"
 					/>
 
-					{/* Modal Content */}
 					<motion.div
 						initial={{ scale: 0.9, opacity: 0, y: 20 }}
 						animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -49,7 +52,6 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 						transition={{ type: 'spring', damping: 25, stiffness: 300 }}
 						className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-app-border bg-app-bg shadow-2xl"
 					>
-						{/* Close Button */}
 						<button
 							ref={closeButtonRef}
 							type="button"
@@ -60,7 +62,6 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 							<X size={20} />
 						</button>
 
-						{/* Header with Flag */}
 						<div className="h-48 w-full overflow-hidden border-b border-app-border">
 							<img
 								src={country.flag}
@@ -69,7 +70,6 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 							/>
 						</div>
 
-						{/* Body */}
 						<div className="p-6">
 							<h2
 								id="modal-title"
@@ -115,12 +115,19 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 }
 
 interface InfoItemProps {
+	/** Ícone a ser exibido ao lado da informação */
 	icon: React.ReactNode;
+	/** Rótulo da informação */
 	label: string;
+	/** Valor da informação */
 	value?: string | number;
+	/** Se verdadeiro, o item ocupa toda a largura disponível */
 	fullWidth?: boolean;
 }
 
+/**
+ * Componente auxiliar para exibir um par ícone/valor dentro do modal.
+ */
 function InfoItem({ icon, label, value, fullWidth }: InfoItemProps) {
 	return (
 		<div

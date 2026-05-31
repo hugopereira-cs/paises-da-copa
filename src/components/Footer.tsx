@@ -1,3 +1,6 @@
+/**
+ * Componente de rodapé com créditos e link social.
+ */
 export function Footer() {
 	return (
 		<footer className="p-8 text-center text-app-primary">

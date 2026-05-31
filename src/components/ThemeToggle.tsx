@@ -1,6 +1,9 @@
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+/**
+ * Componente para alternar entre modo claro e escuro.
+ */
 export function ThemeToggle() {
 	const [theme, setTheme] = useState<'light' | 'dark'>(() => {
 		const saved = localStorage.getItem('theme');

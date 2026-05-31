@@ -1,3 +1,6 @@
+/**
+ * Exibe os títulos informativos da página.
+ */
 export function TextSection() {
 	return (
 		<>
