@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Coins, Globe, MapPin, Maximize, Users, X } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import type { Country } from '../types/country';
 
 interface CountryModalProps {
@@ -8,12 +9,29 @@ interface CountryModalProps {
 }
 
 export function CountryModal({ country, onClose }: CountryModalProps) {
+	const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+	useEffect(() => {
+		if (country) {
+			// Pequeno delay para a animação do Framer Motion começar
+			const timer = setTimeout(() => {
+				closeButtonRef.current?.focus();
+			}, 100);
+			return () => clearTimeout(timer);
+		}
+	}, [country]);
+
 	if (!country) return null;
 
 	return (
 		<AnimatePresence>
 			{country && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+				<div
+					className="fixed inset-0 z-50 flex items-center justify-center p-4"
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="modal-title"
+				>
 					{/* Backdrop */}
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -33,9 +51,11 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 					>
 						{/* Close Button */}
 						<button
+							ref={closeButtonRef}
 							type="button"
 							onClick={onClose}
-							className="absolute right-4 top-4 z-10 rounded-full bg-black/20 p-2 text-white transition-colors hover:bg-black/40"
+							aria-label="Fechar modal"
+							className="absolute right-4 top-4 z-10 rounded-full bg-black/20 p-2 text-white transition-colors hover:bg-black/40 focus:outline-none focus:ring-2 focus:ring-white"
 						>
 							<X size={20} />
 						</button>
@@ -51,7 +71,10 @@ export function CountryModal({ country, onClose }: CountryModalProps) {
 
 						{/* Body */}
 						<div className="p-6">
-							<h2 className="mb-6 text-3xl font-black tracking-tight text-app-primary">
+							<h2
+								id="modal-title"
+								className="mb-6 text-3xl font-black tracking-tight text-app-primary"
+							>
 								{country.name}
 							</h2>
 

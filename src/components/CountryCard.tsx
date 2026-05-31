@@ -10,6 +10,7 @@ export function CountryCard({ country, onClick }: CountryCardProps) {
 		<button
 			type="button"
 			onClick={() => onClick(country)}
+			aria-haspopup="dialog"
 			className="group cursor-pointer rounded-lg border border-app-border bg-app-bg/50 p-4 transition-all duration-300 hover:scale-105 hover:bg-app-bg hover:shadow-lg active:scale-95 w-full max-w-[200px]"
 		>
 			<div className="mb-3 overflow-hidden rounded-md border border-app-border">

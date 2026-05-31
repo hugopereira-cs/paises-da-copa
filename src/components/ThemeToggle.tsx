@@ -24,7 +24,7 @@ export function ThemeToggle() {
 			type="button"
 			onClick={toggleTheme}
 			className="cursor-pointer transition-all duration-300 hover:opacity-80 text-app-primary p-2"
-			aria-label="Toggle theme"
+			aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
 		>
 			{theme === 'light' ? (
 				<Moon className="h-6 w-6" />
