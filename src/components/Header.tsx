@@ -1,7 +1,9 @@
 import { ThemeToggle } from './ThemeToggle';
+import logo from '../assets/logo.png';
 
 /**
- * Cabeçalho da aplicação contendo o logo e o seletor de tema.
+ * Componente de cabeçalho da aplicação.
+ * Contém o logotipo da Copa e o alternador de temas.
  */
 export function Header() {
 	return (
@@ -11,7 +13,7 @@ export function Header() {
 
 			<div className="flex justify-center">
 				<img
-					src="/logo.png"
+					src={logo}
 					alt="Logo Copa do Mundo 2026"
 					className="h-10 md:h-12 w-auto"
 				/>
