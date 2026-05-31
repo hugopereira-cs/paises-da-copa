@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# 🏆 Países da Copa 2026
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma SPA (Single Page Application) moderna e responsiva dedicada a apresentar informações detalhadas sobre os 48 países participantes da Copa do Mundo de 2026. ⚽🌍
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🌍 **Exploração Completa**: Visualize todos os 48 países participantes em uma grade organizada e visualmente atraente.
+- 🌓 **Modo Escuro & Claro**: Suporte completo a temas com persistência no `localStorage` e detecção automática da preferência do sistema.
+- 🇧🇷 **Internacionalização (i18n)**: Tradução dinâmica de nomes de continentes, idiomas e moedas para Português (pt-BR) utilizando a API nativa `Intl` do navegador.
+- 📊 **Detalhes Técnicos**: Modal interativo com dados em tempo real consumidos da API, incluindo população, área, moedas e idiomas.
+- ✨ **Experiência Fluida**: Animações de mola (`spring`) e transições suaves garantidas pelo Framer Motion.
+- ♿ **Acessibilidade (a11y)**: Foco rigoroso em acessibilidade, incluindo gerenciamento de foco em modais, atributos ARIA e navegação nativa via teclado.
+- 📱 **Design Responsivo**: Layout mobile-first que se adapta perfeitamente a qualquer tamanho de tela.
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**: Aproveitando as últimas melhorias da biblioteca para uma performance superior.
+- **Tailwind CSS 4**: Estilização moderna utilizando a nova engine de alto desempenho e variáveis CSS nativas (`@theme`).
+- **Vite**: Ferramenta de build ultra-rápida para um fluxo de desenvolvimento ágil.
+- **Axios**: Cliente HTTP para consumo eficiente da [Rest Countries API](https://restcountries.com/).
+- **Framer Motion**: Biblioteca poderosa para animações declarativas e interações de UI.
+- **Lucide React**: Conjunto de ícones minimalistas e consistentes.
+- **TypeScript**: Tipagem estrita em todo o projeto para evitar erros em tempo de execução e melhorar a DX.
+- **Biome**: Toolchain moderna que substitui o ESLint/Prettier com performance até 100x superior.
 
-## Expanding the ESLint configuration
+## 🔧 Destaques Técnicos & Desafios
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Precisão Geográfica**: A API Rest Countries retorna a bandeira do Reino Unido (UK) para países como Inglaterra e Escócia. Para garantir a fidelidade visual à Copa do Mundo, implementamos uma lógica de *override* integrando a **FlagCDN**, assegurando que cada federação exiba sua bandeira correta.
+- **Traduções Nativas**: Em vez de bibliotecas pesadas de i18n, utilizamos a API nativa `Intl.DisplayNames` do navegador, garantindo um bundle final extremamente leve e performance superior na tradução dinâmica de dados da API.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Como Executar o Projeto
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Clonar o repositório:**
+    ```bash
+    git clone [url-do-repositorio]
+    ```
+2.  **Instalar as dependências:**
+    ```bash
+    npm install
+    ```
+3.  **Executar em modo de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+4.  **Gerar a versão de produção:**
+    ```bash
+    npm run build
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Estrutura de Pastas
+
+```text
+src/
+├── components/ # Componentes de UI (Header, Footer, Modais, Cards)
+├── data/       # Lista estática dos 48 países e metadados
+├── hooks/      # Lógica de negócio e fetch de dados (useCountries)
+├── types/      # Centralização de interfaces TypeScript
+├── utils/      # Utilitários de tradução e formatadores
+└── index.css   # Configurações globais e variáveis do Tailwind 4
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📝 Documentação Técnica
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+O código é inteiramente documentado com **JSDoc**, fornecendo explicações claras sobre:
+- Lógica de merge entre dados locais e dados da API.
+- Funcionamento dos utilitários de tradução nativa.
+- Propriedades e comportamentos de cada componente de UI.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+Desenvolvido com ❤️ por [Hugo Pereira](https://www.linkedin.com/in/hugopereiradev/) 🚀
